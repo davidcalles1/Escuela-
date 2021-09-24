@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Escuela.Data;
 
 namespace Escuela
 {
@@ -24,6 +26,9 @@ namespace Escuela
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddDbContext<ApplicationDbContext>(optios =>
+            optios.UseSqlServer(Configuration.GetConnectionString
+            ("DefaulConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
